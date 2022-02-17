@@ -128,6 +128,26 @@ Add a New Project
 };
 
 promptUser()
+
+promptUser()
+.then(promptProject)
+.then(portfolioData => {
+  return generatePage(portfolioData);
+})
+.then(pageHTML => {
+  return writeFile(pageHTML);
+})
+.then(writeFileResponse => {
+  console.log(writeFileResponse);
+  return copyFile();
+})
+.then(copyFileResponse => {
+  console.log(copyFileResponse);
+})
+.catch(err => {
+  console.log(err);
+});
+
   .then(promptProject)
   .then(portfolioData => {
     const pageHTML = generatePage(portfolioData);
@@ -173,3 +193,4 @@ const printProfileData = profileDataArr => {
     profileDataArr.forEach(profileItem => console.log(profileItem));
 };
  printProfileData(profileDataArgs)
+
